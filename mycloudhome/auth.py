@@ -24,7 +24,8 @@ def fetch_token(username, password):
         "client_id": "56pjpE1J4c6ZyATz3sYP8cMT47CZd6rk"
     }
 
-    response = requests.post(url, data=payload)
+    response = requests.post(url, data=json.dumps(payload), headers={
+                             "Content-Type": "application/json"})
     if configure.debug:
         print(url)
         print(payload)
@@ -60,14 +61,15 @@ def fetch_user_info(username):
     list(map(lambda user: configure.save_profiles(
         get_list_by_user_id(user['user_id']), user), user_info['data']))
 
+
 def get_list_by_user_id(user_id):
     url = configure.get('cloud.service.urls',
                         'service.device.url')+'/device/v1/user/{}?pretty=true'
-    
+
     response = requests.get(url.format(user_id), headers={
-                            'Authorization': 'Bearer '+ token()})
+                            'Authorization': 'Bearer ' + token()})
     if configure.debug:
-        print(url.format(user_id))                        
+        print(url.format(user_id))
         print(response.content)
 
     if response.status_code != 200:

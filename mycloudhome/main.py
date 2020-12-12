@@ -1,4 +1,5 @@
 import click
+import mycloudhome
 import mycloudhome.configure as configure
 import mycloudhome.auth as auth
 import mycloudhome.device as device
@@ -118,6 +119,11 @@ def upload(localpath,wduri):
 # @cli.command()
 # def sync():
 #     pass
+
+@cli.command()
+def version():
+    """Echo Version"""
+    click.echo(mycloudhome.__version__)
 
 if __name__ == '__main__':
     cli()
