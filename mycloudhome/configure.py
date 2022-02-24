@@ -47,7 +47,7 @@ def save_token(token):
 def get_token():
     config = configparser.ConfigParser()
     config.read(os.path.join(home, 'mycloudhome.ini'))
-    return config['auth']['id_token']
+    return config['auth']['access_token']
 
 
 def save_profiles(devices, user):
