@@ -4,6 +4,10 @@ mycloudhome is a cli tool to manage file on the `West Digital` storage device: `
 
 Learn more about MY CLOUD HOME from: <https://www.mycloud.com/#/>
 
+__WD has changed the policy of login. The username and password is not possible now. So I disable this auto-fetch token interface. Please get your token by yourself. And use `mycloudhome login --username XXX --token XXX` instead !!!__
+
+> hints: F11 on Chrome and monitor the xhr like: `POST https://auth0.accounts.westerndigital.com/oauth/token HTTP/2.0`. The access_token in the respond body is what we want.
+
 ## Install
 
 ```bash
@@ -17,7 +21,7 @@ Command-line scares you off? No, mycloudhome is really easy to use!!
 1. fisrt, we need do a login action. And it will fetch your token and config from `mycloud.com`.
 
 ```bash
-mycloudhome login --username xxx --password xxx
+mycloudhome login --username xxx --token xxx
 ```
 
 2. get your devices info by:

@@ -17,15 +17,23 @@ def cli(device, debug):
     pass
 
 
+# @cli.command()
+# @click.option('--username', prompt=True, help='wd mycloudhome username')
+# @click.option('--password', prompt=True, hide_input=True)
+# def login(username, password):
+#     """GET WD MY CLOUD HOME ACCESS TOKEN."""
+#     click.echo('login...')
+#     configure.fetch_endpoint()
+#     click.echo(utils.pretty(auth.login(username, password)))
+
 @cli.command()
 @click.option('--username', prompt=True, help='wd mycloudhome username')
-@click.option('--password', prompt=True, hide_input=True)
-def login(username, password):
-    """GET WD MY CLOUD HOME ACCESS TOKEN."""
-    click.echo('login...')
+@click.option('--token', prompt=True, help='wd mycloudhome token')
+def login(username, token):
+    """SET WD MY CLOUD HOME ACCESS TOKEN"""
     configure.fetch_endpoint()
-    click.echo(utils.pretty(auth.login(username, password)))
-
+    configure.save_token({"access_token":token})
+    auth.fetch_user_info(username)
 
 @cli.command()
 def devices():
